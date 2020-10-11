@@ -3,11 +3,21 @@ import os
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+import getpass
 
+pass_entered = False
 
 # ask for user information
 username = input('Username: ')
-password = input('Password: ')
+
+# using getpass to obscure the text
+while pass_entered == False:
+	password = getpass.getpass('Password: ')
+	yn_value = input(f'The length of the password you entered is {len(password)}. Re-enter your password? (y/n) ')
+	yn_value = yn_value.lower()
+	if(yn_value == 'n'):
+		pass_entered = True
+
 search_keys = input('Search keys: ')
 
 # For windows, erases the command line to protect password
